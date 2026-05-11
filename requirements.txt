@@ -1,0 +1,9 @@
+flask
+flask-cors
+pandas
+mysql-connector-python
+python-dotenv
+openpyxl
+matplotlib
+numpy
+flask-jwt-extended

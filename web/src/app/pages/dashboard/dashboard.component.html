@@ -1,0 +1,126 @@
+<div class="dashboard-page">
+    <div class="page-header">
+      <div class="heading-block">
+        <p class="eyebrow">Executive Overview</p>
+        <h2>Technology Intelligence Dashboard</h2>
+        <p class="subtext">
+          Strategic overview of technology priority, risk, readiness, and research intelligence.
+        </p>
+      </div>
+  
+      <button class="refresh-btn" (click)="loadDashboard()">Refresh Data</button>
+    </div>
+  
+    <div *ngIf="loading" class="state-card">Loading dashboard summary...</div>
+    <div *ngIf="error" class="state-card error-card">{{ error }}</div>
+  
+    <ng-container *ngIf="!loading && !error && summary">
+      <div class="kpi-grid">
+        <div class="kpi-card highlight">
+          <span class="kpi-label">Total Technologies</span>
+          <strong>{{ summary.total_technologies }}</strong>
+        </div>
+  
+        <div class="kpi-card">
+          <span class="kpi-label">Avg Priority Score</span>
+          <strong>{{ summary.average_priority_score }}</strong>
+        </div>
+  
+        <div class="kpi-card danger-soft">
+          <span class="kpi-label">Critical Technologies</span>
+          <strong>{{ summary.critical_technologies }}</strong>
+        </div>
+  
+        <div class="kpi-card">
+          <span class="kpi-label">Avg Risk Score</span>
+          <strong>{{ summary.average_risk_score }}</strong>
+        </div>
+      </div>
+  
+      <div class="insight-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Priority Distribution</h3>
+            <p>Technology classification by current scoring model</p>
+          </div>
+  
+          <div class="distribution-list">
+            <div class="dist-row high">
+              <span>High Priority</span>
+              <strong>{{ summary.high_priority_technologies }}</strong>
+            </div>
+  
+            <div class="dist-row medium">
+              <span>Medium Priority</span>
+              <strong>{{ summary.medium_priority_technologies }}</strong>
+            </div>
+  
+            <div class="dist-row low">
+              <span>Low Priority</span>
+              <strong>{{ summary.low_priority_technologies }}</strong>
+            </div>
+          </div>
+        </div>
+  
+        <div class="panel hero-insight">
+          <div class="panel-header">
+            <h3>Highest Priority Technology</h3>
+            <p>Current top-ranked recommendation for strategic evaluation</p>
+          </div>
+  
+          <div class="hero-tech">
+            {{ summary.highest_priority_technology }}
+          </div>
+  
+          <div class="mini-kpi-grid">
+            <div class="mini-kpi">
+              <span>Adoption-Priority Correlation</span>
+              <strong>{{ summary.adoption_priority_correlation }}</strong>
+            </div>
+  
+            <div class="mini-kpi">
+              <span>Avg Market Readiness</span>
+              <strong>{{ summary.average_market_readiness_score }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="panel table-panel">
+        <div class="panel-header">
+          <h3>Top 10 Priority Technologies</h3>
+          <p>Highest ranked technologies recommended for evaluation and planning</p>
+        </div>
+  
+        <div class="table-wrap" *ngIf="topTechnologies.length > 0">
+          <table>
+            <thead>
+              <tr>
+                <th>Technology</th>
+                <th>Category</th>
+                <th>Priority Score</th>
+                <th>Risk</th>
+                <th>Level</th>
+                <th>Recommendation</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              <tr *ngFor="let tech of topTechnologies">
+                <td class="tech-name">{{ tech.technology_name }}</td>
+                <td>{{ tech.category }}</td>
+                <td>{{ tech.final_priority_score }}</td>
+                <td>{{ tech.risk_score }}</td>
+                <td>
+                  <span [class]="badgeClass(tech.priority_level)">
+                    {{ tech.priority_level }}
+                  </span>
+                </td>
+                <td class="recommendation">{{ tech.recommendation }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
+  </div>

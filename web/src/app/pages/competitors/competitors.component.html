@@ -1,0 +1,59 @@
+<div class="competitors-page">
+    <div class="page-header">
+      <div>
+        <p class="eyebrow">Competitive Benchmarking</p>
+        <h2>Competitor Intelligence</h2>
+        <p class="subtext">
+          Adoption, pilot activity, research tracking, and investment patterns across key competitors.
+        </p>
+      </div>
+  
+      <button class="refresh-btn" (click)="loadCompetitors()">Refresh Data</button>
+    </div>
+  
+    <div *ngIf="loading" class="state-card">Loading competitor intelligence...</div>
+    <div *ngIf="error" class="state-card error-card">{{ error }}</div>
+  
+    <div *ngIf="!loading && !error" class="panel table-panel">
+      <div class="panel-header">
+        <h3>Competitor Benchmark Table</h3>
+        <p>{{ competitors.length }} competitors tracked</p>
+      </div>
+  
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Competitor</th>
+              <th>Total Tracked</th>
+              <th>Avg Activity</th>
+              <th>Adopted</th>
+              <th>Pilot</th>
+              <th>Research</th>
+              <th>Not Adopted</th>
+              <th>High Investment</th>
+              <th>Adoption Rate %</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let competitor of competitors">
+              <td class="comp-name">{{ competitor.competitor_name }}</td>
+              <td>{{ competitor.total_tracked_technologies }}</td>
+              <td>{{ competitor.average_market_activity_score }}</td>
+              <td>{{ competitor.adopted_count }}</td>
+              <td>{{ competitor.pilot_count }}</td>
+              <td>{{ competitor.research_count }}</td>
+              <td>{{ competitor.not_adopted_count }}</td>
+              <td>{{ competitor.high_investment_count }}</td>
+              <td>
+                <span [class]="adoptionClass(competitor.adoption_rate_percentage)">
+                  {{ competitor.adoption_rate_percentage }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

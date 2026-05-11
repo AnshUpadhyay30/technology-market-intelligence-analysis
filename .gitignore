@@ -1,7 +1,33 @@
-.env
+# Virtual environments
 venv/
 .venv/
+
+# Python cache
 __pycache__/
 *.pyc
-.DS_Store
+*.pyo
+*.pyd
+
+# Environment variables
 .env
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+
+# Optional generated output
+# reports/*.xlsx
+# charts/*.png.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+reports/
+charts/
+node_modules/
+dist/

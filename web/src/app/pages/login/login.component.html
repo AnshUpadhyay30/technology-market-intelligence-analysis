@@ -1,0 +1,90 @@
+<div class="login-page">
+    <section class="login-hero">
+      <div class="hero-badge">Flask REST APIs • MySQL • Pandas Analytics • Excel Intelligence</div>
+  
+      <h1>
+        Technology Research<br />
+        <span>& Market Intelligence</span>
+      </h1>
+  
+      <p>
+        A decision-support platform that scores emerging technologies, tracks competitor activity,
+        analyzes research sources (patents/literature), and generates executive-ready Excel reports.
+      </p>
+  
+      <div class="hero-grid">
+        <div class="hero-stat">
+          <strong>1000+</strong>
+          <span>Technologies Scored</span>
+        </div>
+        <div class="hero-stat">
+          <strong>12</strong>
+          <span>Competitors Tracked</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Excel</strong>
+          <span>Dashboard Report</span>
+        </div>
+      </div>
+  
+      <div class="feature-list">
+        <span>Priority Scoring</span>
+        <span>Competitor Intelligence</span>
+        <span>Patent & Sources</span>
+        <span>Risk Insights</span>
+        <span>Report Export</span>
+      </div>
+    </section>
+  
+    <section class="login-shell">
+      <div class="login-card">
+        <div class="brand">
+          <div class="logo">TI</div>
+          <div>
+            <h3>Tech Intelligence</h3>
+            <p>R&amp;D Analytics Platform</p>
+          </div>
+        </div>
+  
+        <h2>Welcome back</h2>
+        <p class="subtitle">Sign in to access your analytics dashboard.</p>
+  
+        <div class="form-block">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="email"
+            placeholder="admin@techintel.com"
+            autocomplete="username"
+          />
+  
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            [(ngModel)]="password"
+            placeholder="Admin@123"
+            autocomplete="current-password"
+          />
+  
+          <button type="button" (click)="onLogin()" [disabled]="loading">
+            {{ loading ? 'Signing in...' : 'Login' }}
+          </button>
+        </div>
+  
+        <div class="error" *ngIf="error">
+          {{ error }}
+        </div>
+  
+        <div class="hint">
+          Demo: <strong>admin&#64;techintel.com / Admin&#64;123</strong>
+        </div>
+  
+        <div class="security-note">
+          <span class="dot"></span>
+          <span>JWT-based login with protected routes and auth headers.</span>
+        </div>
+      </div>
+    </section>
+  </div>

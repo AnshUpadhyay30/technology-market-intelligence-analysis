@@ -1,0 +1,76 @@
+<div class="tech-page">
+    <div class="page-header">
+      <div>
+        <p class="eyebrow">Priority Intelligence</p>
+        <h2>Technology Priority Report</h2>
+        <p class="subtext">
+          Ranked technologies based on readiness, impact, adoption potential, risk, and R&D relevance.
+        </p>
+      </div>
+    </div>
+  
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label>Priority Level</label>
+        <select [(ngModel)]="selectedPriority" (change)="loadTechnologies()">
+          <option *ngFor="let option of priorityOptions" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+  
+      <div class="filter-group">
+        <label>Rows</label>
+        <select [(ngModel)]="limit" (change)="loadTechnologies()">
+          <option [value]="10">10</option>
+          <option [value]="25">25</option>
+          <option [value]="50">50</option>
+          <option [value]="100">100</option>
+        </select>
+      </div>
+  
+      <button class="refresh-btn" (click)="loadTechnologies()">Refresh</button>
+    </div>
+  
+    <div *ngIf="loading" class="state-card">Loading priority report...</div>
+    <div *ngIf="error" class="state-card error-card">{{ error }}</div>
+  
+    <div *ngIf="!loading && !error" class="panel table-panel">
+      <div class="panel-header">
+        <h3>Ranked Technologies</h3>
+        <p>{{ technologies.length }} records loaded</p>
+      </div>
+  
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Technology</th>
+              <th>Category</th>
+              <th>Priority Score</th>
+              <th>Risk</th>
+              <th>Adoption</th>
+              <th>Readiness</th>
+              <th>Level</th>
+              <th>Recommendation</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let tech of technologies">
+              <td class="tech-name">{{ tech.technology_name }}</td>
+              <td>{{ tech.category }}</td>
+              <td>{{ tech.final_priority_score }}</td>
+              <td>{{ tech.risk_score }}</td>
+              <td>{{ tech.adoption_potential_score }}</td>
+              <td>{{ tech.market_readiness_score }}</td>
+              <td>
+                <span [class]="badgeClass(tech.priority_level)">
+                  {{ tech.priority_level }}
+                </span>
+              </td>
+              <td class="recommendation">{{ tech.recommendation }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

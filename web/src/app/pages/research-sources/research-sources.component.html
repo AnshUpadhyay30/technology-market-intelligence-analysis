@@ -1,0 +1,74 @@
+<div class="sources-page">
+    <div class="page-header">
+      <div>
+        <p class="eyebrow">Source Intelligence</p>
+        <h2>Research Sources</h2>
+        <p class="subtext">
+          Patent references, academic literature, market reports, and source reliability intelligence.
+        </p>
+      </div>
+    </div>
+  
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label>Source Type</label>
+        <select [(ngModel)]="selectedSourceType" (change)="loadSources()">
+          <option *ngFor="let option of sourceTypes" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+  
+      <div class="filter-group">
+        <label>Rows</label>
+        <select [(ngModel)]="limit" (change)="loadSources()">
+          <option [value]="10">10</option>
+          <option [value]="25">25</option>
+          <option [value]="50">50</option>
+          <option [value]="100">100</option>
+        </select>
+      </div>
+  
+      <button class="refresh-btn" (click)="loadSources()">Refresh</button>
+    </div>
+  
+    <div *ngIf="loading" class="state-card">Loading research sources...</div>
+    <div *ngIf="error" class="state-card error-card">{{ error }}</div>
+  
+    <div *ngIf="!loading && !error" class="panel table-panel">
+      <div class="panel-header">
+        <h3>Source Intelligence Table</h3>
+        <p>{{ sources.length }} records loaded</p>
+      </div>
+  
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Source Type</th>
+              <th>Source Name</th>
+              <th>Reliability</th>
+              <th>Maturity Level</th>
+              <th>Patent Office</th>
+              <th>Filing Year</th>
+              <th>Summary</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr *ngFor="let source of sources">
+              <td>{{ source.source_type }}</td>
+              <td class="source-name">{{ source.source_name }}</td>
+              <td>
+                <span [class]="reliabilityClass(source.reliability_score)">
+                  {{ source.reliability_score }}
+                </span>
+              </td>
+              <td>{{ source.technology_maturity_level }}</td>
+              <td>{{ source.patent_office || '-' }}</td>
+              <td>{{ source.filing_year || '-' }}</td>
+              <td class="summary">{{ source.research_summary }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,99 @@
+<ng-container *ngIf="!isLoginPage; else loginLayout">
+  <div class="app-shell">
+    <aside class="sidebar" [ngClass]="{ open: sidebarOpen }">
+      <div class="brand-block">
+        <div class="brand-mark">TI</div>
+
+        <div class="brand-copy">
+          <h2>Tech Intelligence</h2>
+          <p>R&amp;D Analytics Platform</p>
+        </div>
+
+        <button class="mobile-close" (click)="closeSidebar()">×</button>
+      </div>
+
+      <nav class="nav-links">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeSidebar()"
+        >
+          <span>Dashboard</span>
+        </a>
+
+        <a
+          routerLink="/technologies"
+          routerLinkActive="active"
+          (click)="closeSidebar()"
+        >
+          <span>Priority Report</span>
+        </a>
+
+        <a
+          routerLink="/competitors"
+          routerLinkActive="active"
+          (click)="closeSidebar()"
+        >
+          <span>Competitors</span>
+        </a>
+
+        <a
+          routerLink="/research-sources"
+          routerLinkActive="active"
+          (click)="closeSidebar()"
+        >
+          <span>Research Sources</span>
+        </a>
+
+        <a
+          routerLink="/reports"
+          routerLinkActive="active"
+          (click)="closeSidebar()"
+        >
+          <span>Reports</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="footer-card">
+          <p class="footer-label">System Status</p>
+          <strong>Analytics Ready</strong>
+        </div>
+
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </div>
+    </aside>
+
+    <div
+      class="sidebar-backdrop"
+      *ngIf="sidebarOpen"
+      (click)="closeSidebar()"
+    ></div>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+
+          <div class="page-intro">
+            <h1>Technology Research &amp; Market Intelligence</h1>
+            <p>Flask REST APIs • MySQL • Pandas Analytics • Excel Intelligence</p>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="status-pill">API Connected</div>
+        </div>
+      </header>
+
+      <section class="content-area">
+        <router-outlet></router-outlet>
+      </section>
+    </main>
+  </div>
+</ng-container>
+
+<ng-template #loginLayout>
+  <router-outlet></router-outlet>
+</ng-template>
