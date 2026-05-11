@@ -133,7 +133,25 @@ Notes
     * Ensure MySQL is running
     * Verify credentials
     * Run sql/schema.sql again
+## Screenshots
 
+### 1) Login
+![Login](screenshots/01-login.png)
+
+### 2) Dashboard
+![Dashboard](screenshots/02-dashboard.png)
+
+### 3) Priority Report
+![Priority Report](screenshots/03-priority-report.png)
+
+### 4) Competitors
+![Competitors](screenshots/04-competitors.png)
+
+### 5) Research Sources
+![Research Sources](screenshots/05-research-sources.png)
+
+### 6) Reports & Analysis
+![Reports](screenshots/06-reports.png)
 
 Author
 
